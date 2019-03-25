@@ -284,7 +284,9 @@ macro(load_llvm_config)
 
     list(APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_PATH}")
     # Get some LLVM variables from LLVMConfig.
-    include("${LLVM_CMAKE_PATH}/LLVMConfig.cmake")
+    if (EXISTS "${LLVM_CMAKE_PATH}/LLVMConfig.cmake")
+      include("${LLVM_CMAKE_PATH}/LLVMConfig.cmake")
+    endif()
 
     set(LLVM_LIBRARY_OUTPUT_INTDIR
       ${LLVM_BINARY_DIR}/${CMAKE_CFG_INTDIR}/lib${LLVM_LIBDIR_SUFFIX})
